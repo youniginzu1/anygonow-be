@@ -1,0 +1,59 @@
+syntax = "proto3";
+package mailservice;
+
+option go_package = "./pb/mailpb";
+
+service MailService {
+  rpc SendMail(SendMailRequest) returns (SendMailResponse) {}
+  rpc SendMails(SendMailsRequest) returns (SendMailsResponse) {}
+  rpc SubscribeNotification(SubscribeNotificationRequest) returns (SubscribeNotificationResponse) {}
+  rpc UnsubscribeNotification(UnsubscribeNotificationRequest) returns (UnsubscribeNotificationResponse) {}
+  rpc SendNotification(SendNotificationRequest) returns (SendNotificationResponse) {}
+}
+
+message SendMailRequest {
+  string to = 1;
+  bytes msg = 2;
+}
+
+message SendMailsRequest {
+  repeated string tos = 1;
+  bytes msg = 2;
+}
+
+message SendMailResponse {
+
+}
+
+message SendMailsResponse {
+
+}
+
+message SubscribeNotificationRequest {
+  string userId = 1;
+  string deviceId = 2;
+}
+
+message SubscribeNotificationResponse {
+
+}
+message UnsubscribeNotificationRequest {
+  string userId = 1;
+  string deviceId = 2;
+}
+
+message UnsubscribeNotificationResponse {
+
+}
+
+message SendNotificationRequest {
+  string to = 1;
+  string body = 2;
+  string message = 3;
+  string title = 4;
+
+}
+
+message SendNotificationResponse {
+
+}

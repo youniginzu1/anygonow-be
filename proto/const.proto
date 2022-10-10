@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package const;
+option go_package = "./c";
+
+
+enum ROLE {
+    CUSTOMER = 0;
+    HANDYMAN = 1;
+    ADMIN = 2;
+  }
+  
+enum SERVICE_STATUS {
+  SERVICE_ACTIVE = 0;
+  SERVICE_INACTIVE = 1;
+}
+
+enum OTP_TYPE {
+  REGISTER = 0;
+  FORGOT_PASSWORD = 1;
+  CHANGE_MAIL = 2;
+  CHANGE_MAIL_AND_PASS = 3;
+}
+
+enum ORDER_STATUS {
+  PENDING = 0;
+  CONNECTED = 1;
+  REJECTED = 2;
+  CANCELED = 3;
+  COMPLETED = 4;
+}
+
+enum ACCOUNT_STATUS {
+  ACTIVE = 0;
+  INACTIVE = 1;
+}
+
+enum SORT_QUERY {
+  DEFAULT = 0;
+  REQUEST = 1;
+  REVIEW = 2;
+}
+
+enum QUERY_CATEGORY_ADMIN {
+  NO = 0;  // cant use default because it declared above
+  ADVERTISE = 1;
+  GROUP = 2;
+}
+
+
+enum REGISTRATION_PROCESS {
+  DONE = 0;
+  STEP_1 = 1;
+  STEP_2 = 2;
+  STEP_3 = 3;
+}
+
+enum SORT_TRANSACTION {
+  THIS_WEEK = 0;
+  LAST_1_WEEK = 1;
+  LAST_2_WEEKS = 2;
+  LAST_3_WEEKS = 3;
+  LAST_MONTH = 4;
+  ALL_TIME = 5;
+}
+
+enum STATUS_VERIFY_REFERRAL_CODE {
+  NONE = 0;
+  VERIFYING = 1;
+  DENY = 2;
+  ACCEPT = 3;
+}
+
+

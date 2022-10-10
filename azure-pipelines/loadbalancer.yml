@@ -1,0 +1,32 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+    - main
+    - dev
+    - releases/*
+  paths:
+    include:
+    - src/loadbalancer
+  batch: true
+pool:
+  name: Builder
+
+name: $(SourceBranchName)_$(Date:ddMMyyyy)$(Rev:.r)
+jobs:
+- job: Publish
+  displayName: Publish
+  pool:
+    name: Builder
+  steps:
+  - checkout: self
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Loadbalancer'
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)/src/loadbalancer'
+      ArtifactName: 'server'
+      

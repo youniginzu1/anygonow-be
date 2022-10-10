@@ -1,0 +1,2059 @@
+syntax = "proto3";
+
+package apiservice;
+import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
+import "google/api/annotations.proto";
+import "const.proto";
+option go_package = "./pb";
+
+
+
+service ApiService {
+
+    rpc SubscribePost(SubscribePostRequest) returns (SubscribePostResponse) {
+        option (google.api.http) = {
+            post: "/subscribe"
+            body: "*"
+        };
+    }
+    rpc UnsubscribePost(UnsubscribePostRequest) returns (UnsubscribePostResponse) {
+        option (google.api.http) = {
+            post: "/unsubscribe"
+            body: "*"
+        };
+    }
+
+    // Auth Credential for get credential infomation
+    rpc AuthCredential(AuthCredentialRequest) returns (AuthCredentialResponse) {
+        option (google.api.http) = {
+            post: "/auth/credential"
+            body: "*"
+        };
+    }
+    // Auth Ping to check whether is authorized
+    rpc AuthPing(AuthPingRequest) returns (AuthPingResponse) {
+        option (google.api.http) = {
+            post: "/auth/ping"
+        };
+    }
+    // Auth Password to change password
+    rpc AuthPasswordPost(AuthPasswordPostRequest) returns (AuthPasswordPostResponse) {
+        option (google.api.http) = {
+            post: "/auth/password"
+            body: "*"
+        };
+    }
+    // Auth OTP to send OTP
+    rpc AuthOTPPost(AuthOTPPostRequest) returns (AuthOTPPostResponse) {
+        option (google.api.http) = {
+            post: "/auth/otp"
+            body: "*"
+        };
+    }
+
+    //Auth Resend OTP to resend OTP
+    rpc AuthResendOTP(AuthResendOTPPostRequest) returns (AuthResendOTPPostResponse) {
+        option (google.api.http) = {
+            post: "/auth/otp/resend"
+            body: "*"
+        };
+    }
+
+    // Forgot to send OTP for forgotting password
+    rpc AuthForgotPost(AuthForgotPostRequest) returns (AuthForgotPostResponse) {
+        option (google.api.http) = {
+            post: "/auth/forgot"
+            body: "*"
+        };
+    }
+    // Auth OTP Forgot to update new password when forgotting
+    rpc AuthForgotReset(AuthForgotResetPostRequest) returns (AuthForgotResetPostResponse) {
+        option (google.api.http) = {
+            post: "/auth/forgot/reset"
+            body: "*"
+        };
+    }
+    // Auth OTP change mail and password
+    rpc AuthChangeMailAndPassPut(AuthChangeMailAndPassPostRequest) returns (AuthChangeMailAndPassPostResponse) {
+        option (google.api.http) = {
+            put: "/auth/change-mail-and-pass"
+            body: "*"
+        };
+    }
+
+    // User for create new user
+    rpc UserPost(UserPostRequest) returns (UserPostResponse) {
+        option (google.api.http) = {
+            post: "/users"
+            body: "*"
+        };
+    }
+
+     // Business for create new handyman (business)
+     rpc BusinessPost(BusinessPostRequest) returns (BusinessPostResponse) {
+        option (google.api.http) = {
+            post: "/businesses"
+            body: "*"
+        };
+    }
+
+
+    // User to get user by id
+    rpc UserGet(UserGetRequest) returns (UserGetResponse) {
+        option (google.api.http) = {
+            get: "/users/{id=message}"
+        };
+    }
+
+    rpc UserStateGet(UserStateGetRequest) returns (UserStateGetResponse) {
+        option (google.api.http) = {
+            get: "/users/state"
+        };
+    }
+
+    // Business to get business by id
+    rpc BusinessGet(BusinessGetRequest) returns (BusinessGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/{id=message}"
+        };
+    }
+
+    // Business to get business by id
+    rpc BusinessPut(BusinessPutRequest) returns (BusinessPutResponse) {
+        option (google.api.http) = {
+            put: "/businesses/{id=message}",
+            body: "*",
+        };
+    }
+
+    rpc BusinessPaymentMethodGet(BusinessPaymentMethodGetRequest) returns (BusinessPaymentMethodGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/payment-method",
+        };
+    }
+
+    rpc OrdersProjectCancel(CancelProjectPostRequest) returns (CancelProjectPostResponse) {
+        option (google.api.http) = {
+            post: "/orders/projects/cancel",
+            body: "*",
+        };
+    }
+
+    rpc BusinessPaymentMethodSetupPost(BusinessPaymentMethodSetupPostRequest) returns (BusinessPaymentMethodSetupPostResponse) {
+        option (google.api.http) = {
+            post: "/businesses/payment-method/setup",
+            body: "*",
+        };
+    }
+
+    rpc BusinessPaymentMethodDeletePost(BusinessPaymentMethodDeletePostRequest) returns (BusinessPaymentMethodDeletePostResponse) {
+        option (google.api.http) = {
+            post: "/businesses/payment-method/delete",
+            body: "*",
+        };
+    }
+
+    rpc BusinessGetInvitationCode(BusinessInterestGetRequest) returns (BusinessInvitationCodeGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/invitation-code",
+        };
+    }
+
+    rpc BusinessVerifyRefCode(BusinessVerifyRefCodePutRequest) returns (BusinessVerifyRefCodePutResponse) {
+        option (google.api.http) = {
+            put: "/businesses/{id=message}/verify-refcode",
+            body: "*",
+        };
+    }
+
+
+    // Business to get business by id
+    rpc ContactGet(ContactGetRequest) returns (ContactGetResponse) {
+        option (google.api.http) = {
+            get: "/contacts/{id=message}",
+        };
+    }
+
+    // Business to get business by id
+    rpc ContactPut(ContactPutRequest) returns (ContactPutResponse) {
+        option (google.api.http) = {
+            put: "/contacts/{id=message}",
+            body: "*",
+        };
+    }
+
+    rpc UserPut(UserPutRequest) returns (UserPutResponse) {
+        option (google.api.http) = {
+            put: "/users/{id=message}",
+            body: "*",
+        };
+    }
+
+    rpc StatesGet(StatesGetRequest) returns (StatesGetResponse) {
+        option (google.api.http) = {
+            get: "/contacts/states",
+        };
+    }
+
+    rpc AdminBanUserPost(AdminBanUserPostRequest) returns (AdminBanUserPostResponse) {
+        option (google.api.http) = {
+            post: "/admin/users/{id=message}/ban",
+        };
+    }
+
+    rpc AdminGroupGet(AdminGroupGetRequest) returns (AdminGroupGetResponse) {
+        option (google.api.http) = {
+            get: "/admin/groups",
+        };
+    }
+
+    rpc AdminGroupPost(AdminGroupPostRequest) returns (AdminGroupPostResponse) {
+        option (google.api.http) = {
+            post: "/admin/groups",
+            body: "*",
+        };
+    }
+
+    rpc AdminGroupPut(AdminGroupPutRequest) returns (AdminGroupPutRequest) {
+        option (google.api.http) = {
+            put: "/admin/groups/{id=message}",
+            body: "*",
+        };
+    }
+    rpc StripePaymentMethodGet(StripePaymentMethodGetRequest) returns (StripePaymentMethodGetResponse) {
+        option (google.api.http) = {
+            get: "/stripe/payment-method",
+        };
+    }
+
+    rpc UploadUrlPost(UploadUrlPostRequest) returns (UploadUrlPostResponse) {
+        option (google.api.http) = {
+            post: "/upload-url",
+            body: "*"
+        };
+    }
+
+    rpc BusinessNearGet(BusinessNearGetRequest) returns (BusinessNearGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/near",
+        };
+    }
+
+
+    rpc BusinessInterestGet(BusinessInterestGetRequest) returns (BusinessInterestGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/interest",
+        };
+    }
+
+    rpc OrdersGet(OrdersGetRequest) returns (OrdersGetResponse) {
+        option (google.api.http) = {
+            get: "/orders",
+        };
+    }
+
+    rpc BusinessServiceGet(BusinessServiceGetRequest) returns (BusinessServiceGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/{id=message}/services",
+        };
+    }
+
+    rpc BusinessFreeContactGet(BusinessFreeContactGetRequest) returns (BusinessFreeContactGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/{id=message}/free-contact",
+        };
+    }
+
+    rpc AdminBusinessesGet(AdminBusinessesGetRequest) returns (AdminBusinessesGetResponse) {
+        option (google.api.http) = {
+            get: "/admin/businesses",
+        };
+    }
+
+    rpc AdminBusinessBanPost(AdminBusinessBanPostRequest) returns (AdminBusinessBanPostResponse) {
+        option (google.api.http) = {
+            post: "/admin/businesses/{id=message}/ban",
+        };
+    }
+    rpc AdminBusinessDeletePost(AdminBusinessDeletePostRequest) returns (AdminBusinessDeletePostResponse) {
+        option (google.api.http) = {
+            post: "/admin/businesses/{id=message}/delete",
+        };
+    }
+
+    rpc AdminUsersDeletePost(AdminUsersDeletePostRequest) returns (AdminUsersDeletePostResponse) {
+        option (google.api.http) = {
+            post: "/admin/users/{id=message}/delete",
+        };
+    }
+
+    rpc AdminUsersUnbanPost(AdminUsersUnbanPostRequest) returns (AdminUsersUnbanPostResponse) {
+        option (google.api.http) = {
+            post: "/admin/users/{id=message}/unban",
+        };
+    }
+
+    rpc AdminBusinessesUnbanPost(AdminBusinessesUnbanPostRequest) returns (AdminBusinessesUnbanPostResponse) {
+        option (google.api.http) = {
+            post: "/admin/businesses/{id=message}/unban",
+        };
+    }
+
+    rpc AdminUsersGet(AdminUsersGetRequest) returns (AdminUsersGetResponse) {
+        option (google.api.http) = {
+            get: "/admin/users",
+        };
+    }
+
+    rpc AdminPostCategories(AdminCategoryPostRequest) returns (AdminCategoryPostResponese) {
+        option (google.api.http) = {
+            post: "/admin/categories",
+            body: "*",
+        };
+    }
+
+    rpc AdminPostEditCategories(AdminCategoryPostEditRequest) returns (AdminCategoryPostEditResponese) {
+        option (google.api.http) = {
+            post: "/admin/categories/edit",
+            body: "*",
+        };
+    }
+
+    rpc AdminPostDeleteCategories(AdminCategoryPostDeleteRequest) returns (AdminCategoryPostDeleteResponese) {
+        option (google.api.http) = {
+            post: "/admin/categories/delete",
+            body: "*",
+        };
+    }
+
+    rpc AdminAdvertiseManagementPost(AdminAdvertiseManagementPostRequest) returns (AdminAdvertiseManagementPostResponse) {
+        option (google.api.http) = {
+            post: "/admin/promote-management",
+            body: "*",
+        }; 
+    }
+
+    rpc AdminAdvertiseMangementGet(AdminAdvertiseManagementGetRequest) returns (AdminAdvertiseManagementGetResponse) {
+        option (google.api.http) = {
+            get: "/admin/promote-management",
+        }; 
+    }
+
+    rpc AdminAdvertiseManagementPut(AdminAdvertiseManagementPutRequest) returns (AdminAdvertiseManagementPutResponse) {
+        option (google.api.http) = {
+            put: "/admin/promote-management/{id=message}",
+            body: "*",
+        };
+    }
+
+    rpc AdminAdvertiseManagementPostDelete(AdminAdvertiseManagementDeletePostRequest) returns (AdminAdvertiseManagementDeletePostResponse) {
+        option (google.api.http) = {
+            post: "/admin/promote-management/{id=message}/delete",
+        };
+    }
+
+    rpc CategoriesGet(CategoriesGetRequest) returns (CategoriesGetResponse) {
+        option (google.api.http) = {
+            get: "/categories",
+        };
+    }
+
+    rpc CategoryGet(CategoryGetRequest) returns (CategoryGetResponse) {
+        option (google.api.http) = {
+            get: "/categories/{id=message}",
+        };
+    }
+
+    rpc StripeKeyGet(StripeKeyGetRequest) returns (StripeKeyGetResponse) {
+        option (google.api.http) = {
+            get: "/stripe/key",
+        };
+    }
+
+    rpc StripeSetupPost(StripeSetupPostRequest) returns (StripeSetupPostResponse) {
+        option (google.api.http) = {
+            get: "/stripe/setup",
+        };
+    }
+ 
+    rpc BusinesssGet(BusinessesGetRequest) returns (BusinessesGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses",
+        };
+    }
+
+    rpc AuthCheckGet(AuthCheckGetRequest) returns (AuthCheckGetResponse) {
+        option (google.api.http) = {
+            get: "/auth/check",
+        };
+    }
+
+    rpc BusinessServicesPut(BusinessServicesPutRequest) returns (BusinessServicesPutResponse) {
+        option (google.api.http) = {
+            put: "/businesses/{id=message}/services",
+        };
+    }
+
+    rpc BusinessFeedbacksGet(BusinessFeedbacksGetRequest) returns (BusinessFeedbacksGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/{id=message}/feedbacks",
+        };
+    }
+
+    rpc BusinessRatingGet(BusinessRatingGetRequest) returns (BusinessRatingGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/{id=message}/rating",
+        };
+    }
+
+    rpc OrdersPost(OrdersPostRequest) returns (OrdersPostResponse) {
+        option (google.api.http) = {
+            post: "/orders",
+            body: "*",
+        };
+    }
+
+    rpc UpdateOrderConnectPost(UpdateOrderStatusPostRequest) returns (UpdateOrderStatusPostResponse) {
+        option (google.api.http) = {
+            post: "/orders/connect",
+            body: "*",
+        };
+    }
+
+    rpc UpdateAllOrderConnectPost(UpdateAllOrderStatusPostRequest) returns (UpdateAllOrderStatusPostResponse) {
+        option (google.api.http) = {
+            post: "/orders/connect-all",
+            body: "*",
+        };
+    }
+
+    rpc UpdateOrderRejectPost(UpdateOrderStatusPostRequest) returns (UpdateOrderStatusPostResponse) {
+        option (google.api.http) = {
+            post: "/orders/reject",
+            body: "*",
+        };
+    }
+
+    rpc UpdateOrderCancelPost(UpdateOrderStatusPostRequest) returns (UpdateOrderStatusPostResponse) {
+        option (google.api.http) = {
+            post: "/orders/cancel",
+            body: "*",
+        };
+    }
+
+    rpc UpdateOrderCompletePost(UpdateOrderStatusPostRequest) returns (UpdateOrderStatusPostResponse) {
+        option (google.api.http) = {
+            post: "/orders/complete",
+            body: "*",
+        };
+    }
+
+    rpc FeedbacksPost(FeedbacksPostRequest) returns (FeedbacksPostResponse) {
+        option (google.api.http) = {
+            post: "/feedbacks",
+            body: "*",
+        };
+    }
+
+    rpc FeedbacksPut(FeedbackPutRequest) returns (FeedbackPutResponse) {
+        option (google.api.http) = {
+            put: "/feedbacks/{id=message}",
+            body: "*",
+        };
+    }
+
+    rpc FeedbacksGet(FeedbackGetRequest) returns (FeedbackGetResponse) {
+        option (google.api.http) = {
+            get: "/feedbacks",
+        };
+    }
+
+    rpc AuthMailPost(AuthMailPostRequest) returns (AuthMailPostResponse) {
+        option (google.api.http) = {
+            post: "/auth/mail",
+            body: "*",
+        };
+    }
+
+    rpc OrdersProjectsGet(UserProjectsGetRequest) returns (UserProjectsGetResponse) {
+        option (google.api.http) = {
+            get: "/orders/projects",
+        };
+    }
+
+    rpc BusinessAlreadyOrderedGet(BusinessesAlreadyOrderedGetRequest) returns (BusinessesAlreadyOrderedGetResponse) {
+        option (google.api.http) = {
+            get: "/orders/already-ordered",
+        };
+    }
+
+    rpc BusinessPaymentMethodPost(BusinessPaymentMethodPostRequest) returns (BusinessPaymentMethodPostResponse) {
+        option (google.api.http) = {
+            post: "/businesses/payment-method",
+            body: "*",
+        };
+    }
+
+    rpc BusinessPaymentSummaryGet(BusinessTransactionsGetRequest) returns (BusinessTransactionsGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/payment-summary",
+        };
+    }
+
+    rpc BusinessPaymentSummaryExportGet(BusinessTransactionsGetRequest) returns (BusinessTransactionsGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/payment-summary-export",
+        };
+    }
+
+
+    rpc BusinessAdvertiseGet(AdvertiseGetRequest) returns (AdvertiseGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/promote",
+        };
+    }
+
+    rpc BusinessAdvertiseDetailGet (AdvertiseDetailGetRequest) returns (AdvertiseDetailGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/promote/{id=message}",
+        };
+    }
+
+    rpc BusinessAdvertiseTransactionGet(BusinessAdvertiseOrderGetRequest) returns (BusinessAdvertiseOrderGetResponse) {
+        option (google.api.http) = {
+            get: "/businesses/promote/order",
+        };
+    }
+
+    rpc BusinessBuyAdvertiseValidatePost(BusinessValidateBuyAdvertisePostRequest) returns (BusinessValidateBuyAdvertisePostResponse) {
+        option (google.api.http) = {
+            post: "/businesses/buy-promote/validate",
+            body: "*",
+        };
+    }
+
+    rpc BusinessBuyAdvertiseSetupPost(BusinessBuyAdvertiseSetupPostRequest) returns (BusinessBuyAdvertiseSetupPostResponse) {
+        option (google.api.http) = {
+            post: "/businesses/buy-promote/setup",
+            body: "*",
+        };
+    }
+
+    rpc BusinessBuyAdvertisePost(BusinessBuyAdvertisePostRequest) returns (BusinessBuyAdvertisePostResponse) {
+        option (google.api.http) = {
+            post: "/businesses/buy-promote",
+            body: "*",
+        };
+    }
+
+    rpc ChatserviceConversationsPost(ConversationPostRequest) returns (ConversationPostResponse) {
+        option (google.api.http) = {
+            post: "/chatservice/conversations",
+            body: "*",
+        };
+    }
+
+    rpc StatisticsGet(StatisticGetRequest) returns (StatisticGetResponse) {
+        option (google.api.http) = {
+            get: "/statistics",
+        };
+    }
+
+}
+
+message SubscribePostRequest {
+    string _userId = 1;
+    string deviceId = 2;
+}
+
+message SubscribePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+message UnsubscribePostRequest {
+    string _userId = 1;
+    string deviceId = 2;
+}
+
+message UnsubscribePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message ConversationPostRequest {
+    string _userId = 1;
+    repeated string conversationIds = 2;
+}
+
+message ConversationPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Conversation conversation = 1;
+    }
+}
+
+
+message Conversation {
+    string id = 1;
+    int64 lastChat = 2;
+    repeated Member members = 3;
+    message Member {
+        string id = 1;
+        string name = 2;
+    }
+}
+
+
+message ServiceGroup {
+    string serviceName = 1;
+    string serviceId = 2;
+}
+
+message Group {
+    string id = 1;
+    string name = 2;
+    float fee = 3;
+    repeated ServiceGroup serviceInfo = 4;
+}
+
+message Feedback {
+    float rate = 1;
+    string comment = 2;
+    int64 createdAt = 3;
+    string customerName = 4;
+    string image = 5;
+    string serviceOrder = 6;
+}
+
+message Payment {
+    string id = 1;
+    string paymentMethodId = 2;
+}
+
+
+message Rating {
+    float rate = 1;
+    int32 review = 2;
+    int32 request = 3;
+}
+
+message BusinessRating {
+    Business business = 1;
+    Rating rating = 2;
+
+}
+
+message Order {
+    string id = 1;
+    string customerId = 2;
+    string businessId = 3;
+    string conversationId = 4;
+    string serviceId = 5;
+    int64 startDate = 6;
+    int64 endDate = 7;
+    const.ORDER_STATUS status = 8;
+    string customerPhone = 9;
+    string customerZipcode = 10;
+    string customerMessage = 11;
+    string serviceName = 12;
+    string image = 13;
+    float fee = 14;
+    string businessLogo = 15;
+    string businessBanner = 16;
+    string businessName = 17;
+    string customerName = 18;
+    bool isReviewed = 19;
+    string categoryId = 20;
+    string customerMail = 21;
+    string handymanMail = 22;
+}
+
+message PaymentMethodInfo {
+    string cardType = 1;
+    string last4 = 2;
+    string expireDate = 3;
+    string ownerName = 4;
+}
+
+
+message StripePaymentMethodGetRequest {
+    string _userId = 1;
+}
+
+message StripePaymentMethodGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        PaymentMethodInfo paymentMethodInfo = 1;
+    }
+}
+
+
+message BusinessPaymentMethodSetupPostRequest {
+    string _userId = 1;
+}
+
+message BusinessPaymentMethodSetupPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string clientSecret = 1;
+    }
+}
+
+message BusinessPaymentMethodDeletePostRequest {
+    string _userId = 1;
+}
+
+message BusinessPaymentMethodDeletePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+
+message UserProjectsGetRequest {
+    string _userId = 1;
+    string offset = 2;
+    string limit = 3;
+}
+
+message UserProjectsGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Project result = 1;
+        Pagination pagination = 2;
+    }
+}
+
+message CancelProjectPostRequest {
+    string _userId = 1;
+    string zipcode = 2;
+    string categoryId = 3;
+}
+
+message CancelProjectPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminCategoryPostRequest {
+    string _userId = 1;
+    string name = 2;
+    string image = 3;
+}
+
+message AdminCategoryPostResponese {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminCategoryPostEditRequest {
+    string _userId = 1;
+    string id = 2;
+    string name = 3;
+    float fee = 4;
+    string url = 5;
+}
+
+message AdminCategoryPostEditResponese {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminCategoryPostDeleteRequest {
+    string _userId = 1;
+    string categoryId = 2;
+}
+
+message AdminCategoryPostDeleteResponese {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminGroupGetRequest {
+    string _userId = 1;
+    string limit = 2;
+    string offset = 3;
+    string categoryId = 4;
+}
+
+message AdminGroupGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated Group result = 2;
+    }
+}
+
+message AdminGroupPostRequest {
+    string _userId = 1;
+    string name = 2;
+    float fee = 3;
+    repeated string ServiceIds = 4;
+}
+
+message AdminGroupPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminGroupPutRequest {
+    string _userId = 1;
+    string name = 2;
+    float fee = 3;
+    repeated string ServiceIds = 4;
+    string id = 5;
+}
+
+message AdminGroupPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message Project {
+    string serviceName = 1;
+    string zipcode = 2;
+    int64 total = 3;
+    string image = 4;
+    string serviceId = 5;
+}
+
+message AuthMailPostRequest {
+    string mail = 1;
+    string _userId = 2;
+}
+
+message AuthMailPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string otpId = 1;
+    }
+}
+
+message StripeSetupPostRequest {
+    string _userId = 1;
+}
+message StripeSetupPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string setupIntentId = 1;
+    }
+}
+
+message BusinessPaymentMethodGetRequest {
+    string _userId = 1;
+}
+message BusinessPaymentMethodGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Payment payment = 1;
+    }
+}
+
+message BusinessPaymentMethodPostRequest {
+    string _userId = 1;
+    string paymentMethodId = 2;
+}
+message BusinessPaymentMethodPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+
+message StripePaymentMethodPostRequest {
+    string _userId = 1;
+    string paymentMethodId = 2;
+}
+message StripePaymentMethodPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message StripeKeyGetRequest {
+    string id = 1;
+}
+message StripeKeyGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string key = 1;
+    }
+}
+
+message FeedbacksPostRequest {
+    string _userId = 1;
+    string orderId = 2;
+    float rate = 3;
+    string comment = 4;
+    string serviceId = 5;
+    string businessId = 6;
+}
+message FeedbacksPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Feedback feedback = 1;
+    }
+}
+
+message FeedbackPutRequest {
+    string id = 1;
+    string _userId = 2;
+    float rate = 4;
+    string comment = 5;
+}
+
+message FeedbackPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message FeedbackGetRequest {
+    string _userId = 1;
+    string orderId = 2;
+}
+
+message FeedbackGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Feedback feedback = 1;
+    }
+}
+
+
+
+message UpdateOrderStatusPostRequest {
+    string _userId = 1;
+    string orderId = 2;
+    const.ROLE _role = 3;
+}
+
+message UpdateOrderStatusPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+message UpdateAllOrderStatusPostRequest {
+    string _userId = 1;
+    const.ROLE _role = 3;
+}
+
+message UpdateAllOrderStatusPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+
+message CategoryGetRequest {
+    string id = 1;
+}
+message CategoryGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Category category = 1;
+    }
+}
+
+message OrdersPostRequest {
+    repeated string businessIds = 1; 
+    string zipcode = 2;
+    string _userId = 3;
+    string categoryId = 4;
+    
+
+}
+message OrdersPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message BusinessRatingGetRequest {
+    string id = 1;
+}
+
+message BusinessRatingGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Rating rate = 1;
+    }
+}
+
+
+message BusinessFeedbacksGetRequest {
+    string id = 1;
+    string offset = 2;
+    string limit = 3;
+    string rate = 4;
+}
+
+message BusinessFeedbacksGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated Feedback result = 2;
+    }
+}
+
+
+message BusinessServicesPutRequest {
+    repeated string categoryIds = 1;
+    string id = 2;
+    string _userId = 3;
+}
+
+message BusinessServicesPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Service result = 1;
+    }
+}
+
+message CategoriesGetRequest {
+    const.QUERY_CATEGORY_ADMIN query = 1;
+    string limit = 2;
+    string offset = 3;
+    string name = 4;
+}
+
+message CategoriesGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Category result = 1;
+        Pagination pagination  = 2;
+    }
+    
+}
+
+message BusinessesGetRequest {
+    string categoryId = 1;
+    string zipcode = 2;
+    string offset = 3;
+    string limit = 4;
+    string mail = 5;
+    string phone = 6;
+    const.SORT_QUERY query = 7;
+}
+message BusinessesGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated BusinessRating result = 1;
+        Pagination pagination = 2;
+
+    }
+    
+}
+
+
+message AuthCheckGetRequest {
+    string identifier = 1;
+}
+message AuthCheckGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        bool existed = 1;
+    }
+    
+}
+
+
+
+message Pagination {
+    int32 offset = 1;
+    int32 limit = 2;
+    int64 total = 3;
+}
+
+
+message Category {
+    string id = 1;
+    string name = 2;
+    int64 totalProvider = 3;
+    float fee = 4;
+    string image = 5;
+}
+
+
+message BusinessServiceGetRequest {
+    string id = 1;
+}
+message BusinessServiceGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Service result = 1;
+    }
+    
+}
+
+
+message BusinessNearGetRequest {
+    string _userId = 1;
+}
+message BusinessNearGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated BusinessRating result = 1;
+    }
+    
+}
+
+message OrdersGetRequest {
+    string _userId = 1;
+    const.ORDER_STATUS status = 2;
+    string offset = 3;
+    string limit = 4;
+    string serviceId = 5;
+    string zipcode = 6;
+    
+}
+message OrdersGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated Order result = 2;
+    }
+    
+}
+
+
+
+message BusinessInterestGetRequest {
+}
+message BusinessInterestGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated BusinessRating result = 1;
+    }
+    
+}
+
+
+
+message UploadUrlPostRequest {
+    string _userId = 1;
+    string filename = 2;
+    int64 contentLength = 3;
+}
+   
+message UploadUrlPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+   }
+}
+
+
+message AdminBanUserPostRequest {
+    string id = 1;
+    string _userId = 2;
+}
+   
+message AdminBanUserPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+message AdminUsersUnbanPostRequest {
+    string id = 1;
+    string _userId = 2;
+}
+   
+message AdminUsersUnbanPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+message AdminUsersDeletePostRequest {
+    string id = 1;
+    string _userId = 2;
+}
+   
+message AdminUsersDeletePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+message AdminBusinessesUnbanPostRequest {
+    string id = 1;
+    string _userId = 2;
+}
+   
+message AdminBusinessesUnbanPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+
+// rpc AuthOTPForgot(AuthForgotResetPostResponse) returns (AuthForgotResetPostResponse) 
+message AuthForgotResetPostRequest {
+     string otpId = 1;
+     string encryptedPrivateKey = 2;
+     string publicKey = 3;
+     string otp = 4;
+}
+    
+message AuthForgotResetPostResponse {
+     int32 code = 1;
+     bool success = 2;
+     Data data = 3;
+    message Data {
+    }
+}
+
+message AuthChangeMailAndPassPostRequest {
+    string mail = 1;
+    string encryptedPrivateKey = 2;
+    string _userId = 3;
+    string publicKey = 4;
+}
+
+message AuthChangeMailAndPassPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+   }
+}
+
+
+
+// rpc AuthPasswordForgotPost(AuthForgotPostRequest) returns (AuthForgotPostResponse) 
+message AuthForgotPostRequest {
+     string mail = 1;
+}
+    
+message AuthForgotPostResponse {
+     int32 code = 1;
+     bool success = 2;
+     Data data = 3;
+    message Data {
+         string otpId = 1;
+         string id = 2;
+    }
+}
+
+
+message AuthResendOTPPostRequest {
+    string otpId = 1;
+}
+
+message AuthResendOTPPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+   message Data {
+        string otpId = 1;
+   }
+}
+
+// rpc AuthOTPPost(AuthOTPPostRequest) returns (AuthOTPPostResponse)
+message AuthOTPPostRequest {
+     string otpId = 1;
+    string otp = 2;
+}
+    
+message AuthOTPPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+
+    }
+}
+
+
+
+message StatesGetRequest {
+}
+ 
+message StatesGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated State states = 1;
+    }
+}
+
+
+
+
+message ContactGetRequest {
+    string id = 1;
+    string _userId = 2;
+}
+ 
+message ContactGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Contact contact = 1;
+    }
+}
+
+
+message UserPutRequest {
+    string id = 1;
+    string _userId = 2;
+    string url = 3;
+    string firstName = 4;
+    string lastName = 5;
+    string phone = 6 [
+        (validate.rules).string = {
+            pattern: "^[0-9]{10}$",
+            ignore_empty: true,
+        }
+    ];
+    string mail = 7;
+}
+ 
+message UserPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        User user = 1;
+    }
+}
+
+
+
+
+message ContactPutRequest {
+    string id = 1;
+    string _userId = 2;
+    string zipcode = 3;
+    string address1 = 4;
+    string address2 = 5;
+    string stateId = 6;
+    string city = 7;
+
+}
+ 
+message ContactPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Contact contact = 1;
+    }
+}
+
+message AdminBusinessDeletePostRequest {
+    string _userId = 1;
+    string id = 2;
+}
+ 
+message AdminBusinessDeletePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminBusinessBanPostRequest {
+    string _userId = 1;
+    string id = 2;
+}
+ 
+message AdminBusinessBanPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminUsersGetRequest {
+    string _userId = 1;
+    string mail = 2;
+    string limit = 3;
+    string offset = 4;
+    string phone = 5;
+}
+ 
+message AdminUsersGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated User result = 2;
+    }
+}
+
+message AdminBusinessesGetRequest {
+    string _userId = 1;
+    string mail = 2;
+    string phone = 3;
+    string limit = 4;
+    string offset = 5;
+}
+ 
+message AdminBusinessesGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated Business result = 2; 
+    }
+}
+
+message BusinessGetRequest {
+    string id = 1;
+    string _userId = 2;
+}
+ 
+message BusinessGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Business business = 1;
+    }
+}
+
+message State {
+    string id = 1;
+    string name = 2;
+}
+
+message Business {
+    string id = 1;
+    string name = 2;
+    string phone = 3;
+    string logoImage = 4;
+    string bannerImage = 5;
+    string contactId = 6;
+    string website = 7;
+    string descriptions = 8;
+    repeated string services = 9;
+    string mail = 10;
+    string zipcode = 11;
+    const.ACCOUNT_STATUS status = 12;
+    const.STATUS_VERIFY_REFERRAL_CODE refStatus = 13;
+    repeated string zipcodes = 14;
+    repeated ServiceGroup serviceInfo = 15;
+    int64 startDate = 16;
+}
+
+message Service {
+    string id = 1;
+    string name = 2;
+    string image = 3;
+    string businessId = 4;
+    const.SERVICE_STATUS status = 5;
+    string categoryId = 6;
+    string categoryName = 7;
+    int64 numberOrder = 8;
+}
+
+
+
+
+message BusinessPutRequest {
+    string id = 1;
+    string _userId = 2;
+    string name = 3;
+    string phone = 4 [
+        (validate.rules).string = {
+            pattern: "^[0-9]{10}$",
+            ignore_empty: true
+        }
+    ];
+    string logoUrl = 5;
+    string bannerUrl = 6;
+    string website = 7;
+    string description = 8;
+    repeated string zipcodes = 9;
+}
+ 
+message BusinessPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Business business = 1;
+    }
+}
+
+// rpc UserGet(UserGetRequest) returns (UserGetResponse)
+message UserGetRequest {
+    string id = 1;
+    string _userId = 2;
+}
+ 
+message UserGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        User user = 1;
+    }
+}
+
+message User {
+    string id = 1;
+    string image = 2;
+    string mail = 3;
+    string phone = 4;
+    string contactId = 5;
+    string firstName = 6;
+    string lastName = 7;
+    const.ACCOUNT_STATUS status = 8;
+    string name = 9;
+    string zipcode = 10;
+}
+
+message Contact {
+    string id = 1;
+    string zipcode = 2;
+    string address1 = 3;
+    string address2 = 4;
+    string state = 5;
+    string city = 6;
+    string stateId = 7;
+}
+
+
+// AuthPasswordPost(AuthPasswordPostRequest) returns (AuthPasswordPostResponse)
+message AuthPasswordPostRequest {
+    string publicKey = 1;
+    string encryptedPrivateKey = 2;
+    string _userId = 3;
+}
+
+message AuthPasswordPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+ }
+
+
+// UserPost(UserPostResquest) returns (UserPostResponse)
+message UserPostRequest {
+    string mail = 1 [
+        (validate.rules).string = {
+            email: true,
+        }
+    ];
+    string phone = 2 [
+        (validate.rules).string = {
+            pattern: "^[0-9]{10}$",
+        }
+    ];
+    string publicKey = 3 [
+        (validate.rules).string = {
+            min_len: 1
+        }
+    ];
+    string encryptedPrivateKey = 4 [
+        (validate.rules).string = {
+            min_len: 1
+        }
+    ];
+}
+
+message UserPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string otpId = 1;
+        string mail = 2;
+        string phone = 3;
+    }
+}
+
+message BusinessPostRequest {
+    string mail = 1 [
+        (validate.rules).string = {
+            email: true,
+        }
+    ];
+    string phone = 2 [
+        (validate.rules).string = {
+            pattern: "^[0-9]{10}$",
+        }
+    ];
+    string publicKey = 3 [
+        (validate.rules).string = {
+            min_len: 1
+        }
+    ];
+    string encryptedPrivateKey = 4 [
+        (validate.rules).string = {
+            min_len: 1
+        }
+    ];
+    string refCode = 5;
+}
+
+message BusinessPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string otpId = 1;
+        string mail = 2;
+        string phone = 3;
+    }
+}
+
+// AuthCredential(AuthCredentialRequest) returns (AuthCredentialResponse)
+message AuthCredentialRequest {
+    string identifier = 1; 
+}
+message AuthCredentialResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string id = 1;
+        string publicKey = 2;
+        string encryptedPrivateKey = 3;
+        bool shouldChangeMail = 4;
+        bool isDefaultPassword = 5;
+    }
+}
+
+// AuthPing(AuthPingRequest) returns (AuthPingResponse)
+message AuthPingRequest {
+    string _userId = 1;
+    const.ROLE _role = 2;
+    
+}
+message AuthPingResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string id = 1;
+        const.ROLE role = 2;
+        const.REGISTRATION_PROCESS process = 3;
+        string image = 4;
+        User user = 5;
+        Business business = 6;
+    }
+}
+
+message BusinessTransactionsGetRequest {
+    string _userId = 1;
+    const.SORT_TRANSACTION query = 2;
+    string limit = 3;
+    string offset = 4;
+}
+
+message BusinessTransactionsGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated Transaction result = 1;
+        Pagination pagination = 2;
+        float totalFee = 3;
+    }
+}
+
+message Transaction{
+    int64 startDate = 1;
+    int64 endDate = 2;
+    string serviceName = 3;
+    string zipcode = 4;
+    float fee = 5;
+    const.ORDER_STATUS status = 6;
+    string id = 7;
+    string image = 8;
+}
+
+message AdvertisePackage {
+    string id = 1;
+    string name = 2;
+    repeated ServiceGroup serviceInfo = 3;
+    double price = 4;
+    string bannerUrl = 5;
+    string description = 6;
+}
+
+message AdminAdvertiseManagementPostRequest {
+    string _userId = 1;
+    string name = 2;
+    repeated string categoryIds = 3;
+    double price = 4;
+    string bannerUrl = 5;
+    string description = 6;
+}
+
+message AdminAdvertiseManagementPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {}
+}
+
+message AdminAdvertiseManagementGetRequest {
+    string _userId = 1;
+    string serviceName = 2;
+    string limit = 3;
+    string offset = 4;
+}
+
+message AdminAdvertiseManagementGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated AdvertisePackage result = 2; 
+    }
+}
+
+message AdminAdvertiseManagementPutRequest {
+    string _userId = 1;
+    string name = 2;
+    repeated string categoryIds = 3;
+    double price = 4;
+    string bannerUrl = 5;
+    string description = 6;
+    string id = 7;
+}
+
+message AdminAdvertiseManagementPutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdminAdvertiseManagementDeletePostRequest {
+    string _userId = 1;
+    string id = 2;
+}
+
+message AdminAdvertiseManagementDeletePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+    }
+}
+
+message AdvertiseGetRequest {
+    string _userId = 1;
+    string limit = 2;
+    string offset = 3;
+}
+
+message AdvertiseGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated AdvertisePackage result = 2; 
+    }
+}
+
+message AdvertiseOrder {
+    string id = 1;
+    string name = 2;
+    string categoryName = 3;
+    double price = 4;
+    string bannerUrl = 5;
+    string description = 6;
+    string zipcode = 7;
+    int64 startDate = 8;
+    int64 endDate = 9;
+    string _userId = 10;
+    string advertisePackageId = 11;
+}
+
+message BusinessAdvertiseOrderGetRequest {
+    string _userId = 1;
+    string limit = 3;
+    string offset = 4;
+}
+
+message BusinessAdvertiseOrderGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated AdvertiseOrder result = 2; 
+    }
+}
+
+message BusinessInvitationCodeGetRequest {
+    string _userId = 1;
+}
+
+message BusinessInvitationCodeGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string code = 1;
+    }
+}
+
+message AdvertiseDetailGetRequest {
+    string _userId  = 1;
+    string limit = 2;
+    string offset = 3;
+    string id = 4;
+}
+
+message AdvertiseDetailGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        Pagination pagination = 1;
+        repeated AdvertiseDetail result = 2; 
+    }
+}
+
+message AdvertiseDetail {
+    string id = 1;
+    string name = 2;
+    repeated ServiceGroup serviceInfo = 3;
+    double price = 4;
+    string bannerUrl = 5;
+    string description = 6;
+    repeated string zipcodes = 7;
+}
+
+message BusinessFreeContactGetRequest {
+    string id = 1;
+}
+
+message BusinessFreeContactGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+       int32 number = 1;
+    }
+}
+
+
+message BusinessBuyAdvertiseSetupPostRequest {
+    string _userId = 1;
+    int64 amount = 2;
+    string paymentId = 3;
+}
+
+message BusinessBuyAdvertiseSetupPostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        string status = 1;
+    }
+}
+
+message BusinessBuyAdvertisePostRequest {
+    string _userId = 1;
+    string advertisePackageId = 2;
+    string packageName = 3;
+    double price = 4;
+    string bannerUrl = 5;
+    string description = 6;
+    string zipcode = 7;
+    string categoryName = 8;
+    string categoryId = 9;
+    int64 startDate = 10;
+    int64 endDate = 11;
+}
+
+message BusinessBuyAdvertisePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {}
+}
+
+message BusinessVerifyRefCodePutRequest {
+    string id = 1;
+    bool status = 2;
+}
+
+message BusinessVerifyRefCodePutResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {}
+}
+
+message BusinessValidateBuyAdvertisePostRequest {
+    string _userId = 1;
+    string categoryId = 2;
+    string zipcode = 3;
+}
+
+message BusinessValidateBuyAdvertisePostResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {}
+}
+
+message UserStateGetRequest {
+    
+}
+
+message UserStateGetResponse{
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated string results = 1;
+    }
+}
+
+message StatisticGetRequest {
+}
+
+message StatisticGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        int64 serviceQuantity = 1;
+        int64 businessQuantity = 2;
+        int64 customerQuantity = 3;
+        int64 cityQuantity = 4;
+    }
+}
+
+message ValidateMailGetRequest {
+    string mail = 1;
+}
+
+message ValidateMailGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+       bool isValidate = 1;
+    }
+}
+
+message BusinessesAlreadyOrderedGetRequest {
+    string _userId = 1; 
+    string zipcode = 2;
+    string categoryId = 3;
+}
+
+message BusinessesAlreadyOrderedGetResponse {
+    int32 code = 1;
+    bool success = 2;
+    Data data = 3;
+    message Data {
+        repeated string businessId = 1;
+    }
+}
