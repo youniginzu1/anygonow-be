@@ -1,0 +1,62 @@
+sish-client:
+  replicaCount: 1
+  revisionHistoryLimit: 1
+  image:
+    repository: kroniak/ssh-client
+    tag: latest
+    pullPolicy: Always
+  startupProbe:
+    failureThreshold:
+    periodSeconds:
+  livenessProbe:
+    failureThreshold: 1
+    periodSeconds: 10
+  service:
+    name: ssh-tunnel
+  services:
+    sish:
+      domain: ${DOMAIN}
+      port: ${SSH_PORT}
+      request:
+        domain: ${SUB_DOMAIN}
+        port: ${REQUEST_PORT}
+      from:
+        domain: ${FROM_DOMAIN}
+        port: ${FROM_PORT}
+
+image:
+  repository: unleashorg/unleash-proxy
+  tag: latest
+  pullPolicy: Always
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+  # The key value pairs under secrets will be included in a Kubernetes Secret,
+  # and they will generate environment variables that use `valueFrom` to refer to
+  # the secrets in the Kubernetes Secret.
+secrets: {}
+  #  SHARED_SECRET: 999z9z9z99https://meet.google.com/rtk-rbjr-tkv99zzz9
+  #  GOOGLE_CLIENT_SECRET: zzzZZz9ZZzZzZzz9Z9zZZZZZ
+
+service:
+  type: ClusterIP
+  port: 3000
+  annotations: {}
+    ## Load Balancer sources
+    ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+    ## Example:
+    ## loadBalancerSourceRanges:
+    ## - 10.10.10.0/24
+loadBalancerSourceRanges: []
+
+tolerations: []
+
+  # VerticalPodAutoscaler
+vpa:
+  enabled: false
