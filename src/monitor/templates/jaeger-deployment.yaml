@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "monitor.fullname" . }}-jaeger
+  labels:
+    {{- include "monitor.labels" . | nindent 4 }}
+    app: jaeger
+spec:
+  selector:
+    matchLabels:
+      {{- include "monitor.selectorLabels" . | nindent 6 }}
+      app: jaeger
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "monitor.selectorLabels" . | nindent 8 }}
+        app: jaeger
+    spec:
+      serviceAccountName: {{ include "monitor.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: jaegertracing/all-in-one:1.29
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: jaeger
+              containerPort: 16686
+              protocol: TCP
+            - name: trace-collector
+              containerPort: 14250
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

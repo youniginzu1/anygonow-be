@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "monitor.fullname" . }}-collector
+  labels:
+    {{- include "monitor.labels" . | nindent 4 }}
+    app: collector
+data:
+  collector.yaml: |
+    {{- include "monitor.collector-config" . | nindent 4 -}}

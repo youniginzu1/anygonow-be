@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "monitor.fullname" . }}-jaeger
+  labels:
+    {{- include "monitor.labels" . | nindent 4 }}
+    app: jaeger
+spec:
+  type: ClusterIP
+  ports:
+    - port: 16686
+      targetPort: jaeger
+      protocol: TCP
+      name: jaeger
+    - name: trace-collector
+      targetPort: trace-collector
+      port: 14250
+      protocol: TCP
+  selector:
+    {{- include "monitor.selectorLabels" . | nindent 4 }}
+    app: jaeger

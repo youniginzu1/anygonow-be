@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "monitor.fullname" . }}-collector
+  labels:
+    {{- include "monitor.labels" . | nindent 4 }}
+    app: collector
+spec:
+  selector:
+    matchLabels:
+      {{- include "monitor.selectorLabels" . | nindent 6 }}
+      app: collector
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "monitor.selectorLabels" . | nindent 8 }}
+        app: collector
+    spec:
+      volumes:
+        - name: collector-conf
+          configMap:
+            name: {{ include "monitor.fullname" . }}-collector
+      serviceAccountName: {{ include "monitor.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: otel/opentelemetry-collector-contrib-dev:latest
+          volumeMounts:
+            - name: collector-conf
+              mountPath: /app
+          args:
+            - --config=/app/collector.yaml
+          ports:
+            - name: collector
+              containerPort: 4317
+              protocol: TCP
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
