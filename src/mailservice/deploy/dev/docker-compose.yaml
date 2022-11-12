@@ -1,0 +1,63 @@
+version: "3.7"
+networks:
+  main:
+    name: go-go
+
+
+services:
+  # unleash-db:
+  #   image: postgres:13
+  #   volumes:
+  #     - unleashdb:/var/lib/postgresql
+  #   environment:
+  #     POSTGRES_DB: "db"
+  #     POSTGRES_HOST_AUTH_METHOD: "trust"
+  #   networks:
+  #     - main
+  # unleash:
+  #   image: unleashorg/unleash-server
+  #   ports:
+  #     - "4242:4242"
+  #   environment:
+  #     DATABASE_URL: "postgres://postgres:unleash@unleash-db/postgres"
+  #     DATABASE_SSL: "false"
+  #   depends_on:
+  #     - unleash-db
+  #   networks:
+  #     - main
+  # cdb:
+  #   image: cockroachdb/cockroach:v21.1.6
+  #   ports:
+  #     - "20000:26257"
+  #   command: start-single-node --insecure
+  #   volumes:
+  #     - "cdb:/cockroach/cockroach-data"
+  #   networks:
+  #     - main
+  # jaeger:
+  #   image: jaegertracing/all-in-one:1.29
+  #   ports:
+  #     - 16686:16686
+  #   networks:
+  #     - main
+  mailservice:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - "../../:/app"
+      - $HOME/go:/go
+    ports:
+      - "50052:50051"
+    # depends_on:
+    #   - cdb
+    command:
+      - /bin/sh
+      - -c
+      - |
+        air
+    env_file: .env
+    networks:
+      - main
+
