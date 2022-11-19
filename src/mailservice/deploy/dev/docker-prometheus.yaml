@@ -1,0 +1,16 @@
+version: "3.7"
+networks:
+  main:
+    name: go-go
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes: 
+      - "./:/app/"
+    command:
+      - --config.file=/app/prometheus_conf.yml
+      # - --help
+    networks:
+      - main
