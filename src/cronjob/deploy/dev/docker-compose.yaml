@@ -1,0 +1,23 @@
+version: "3.7"
+networks:
+  main:
+    name: go-go
+services:
+  cronjob:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      target: dev
+    # ports:
+    #   - 2345:2345
+    volumes:
+      - "../../:/app"
+      - $HOME/go:/go
+    command:
+      - /bin/sh
+      - -c
+      - |
+        air
+    env_file: .env
+    networks:
+      - main

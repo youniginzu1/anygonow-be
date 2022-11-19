@@ -1,0 +1,15 @@
+insert into public.users (id, updated_at, created_at, deleted_at, username, public_key, encrypted_private_key, mail, phone, role_id, is_active)
+values  ('11526c9b-b56a-4d79-9f7b-4e1162360f0f', 1644034535393, 1644034535393, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('17a7b4ea-0c94-476d-ae2d-37f1fdb0dfa6', 1644034678693, 1644034678693, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('2099797f-3a7f-4e75-8b0b-c39ddd72b952', 1644034535393, 1644034535393, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('3d231911-d863-4908-b729-ad290b765c32', 1644034678693, 1644034678693, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('72f048be-f355-4521-b89f-958c997b4d48', 1644034535393, 1644034535393, 0, 'aqaurius1910@gmail.com', 'A9VMrb8olmifFj4QVhG63fIJDK1+kkKsdKE3bmm+E9Xx', 'U2FsdGVkX19Bw6GSZZsIF4Q96pqg6xxlQFlI91E4b0Vzhnj14SMAziyXim3u6Tq565DaJ6HNv8yFxMgb3WlWbQ==', 'aqaurius1910@gmail.com', '012343617111', 'aace9864-752f-4959-ad22-5a8263046bff', true),
+        ('74dab9ef-7f39-417a-804e-37532e58886c', 1644034678693, 1644034678693, 0, 'aqaurius1910+2@gmail.com', 'A9VMrb8olmifFj4QVhG63fIJDK1+kkKsdKE3bmm+E9Xx', 'U2FsdGVkX19Bw6GSZZsIF4Q96pqg6xxlQFlI91E4b0Vzhnj14SMAziyXim3u6Tq565DaJ6HNv8yFxMgb3WlWbQ==', 'aqaurius1910+2@gmail.com', '012343617511', 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('868356c1-184e-4276-8784-4dd4efb12d5e', 1644034535393, 1644034535393, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('92aa6714-0908-43dd-a550-7dfb63cb1346', 1644034678693, 1644034678693, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('95b25ba4-d3f1-46af-852c-022ed7e3d46d', 1644034535393, 1644034535393, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('aa618a0c-9853-4ad7-984a-dc2f3e568e7c', 1644034678693, 1644034678693, 0, 'admin', 'A9VMrb8olmifFj4QVhG63fIJDK1+kkKsdKE3bmm+E9Xx', 'U2FsdGVkX19Bw6GSZZsIF4Q96pqg6xxlQFlI91E4b0Vzhnj14SMAziyXim3u6Tq565DaJ6HNv8yFxMgb3WlWbQ==', 'admin', '01', '39a5635c-be8a-4ccd-b7a6-35b2c9f58819', true),
+        ('b351e98c-2e47-4e9a-887c-d58702517f54', 1644034535393, 1644034535393, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('b95f93cc-13b6-4307-8525-24fc9b8ebfdb', 1644034678693, 1644034678693, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('cbdf3ef5-52e3-4850-b1fc-19bbd0506e0d', 1644034535393, 1644034535393, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true),
+        ('df2d5cb8-0fc6-45a3-80be-0c6421c16ea0', 1644034678693, 1644034678693, 0, null, null, null, null, null, 'bb2438b6-256b-48b0-b1ad-807324fed0cc', true);
