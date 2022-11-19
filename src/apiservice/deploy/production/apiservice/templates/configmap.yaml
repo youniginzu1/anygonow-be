@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "apiservice.fullname" . }}-env
+  labels:
+    {{- include "apiservice.labels" . | nindent 4 }}
+data:
+{{ range .Files.Lines ".env" }}
+  {{- include "helpers.convert-env" (dict "line" . )  | indent 2}}
+{{ end }}

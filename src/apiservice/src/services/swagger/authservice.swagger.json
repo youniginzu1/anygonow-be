@@ -1,0 +1,237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "authservice.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AuthService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "authserviceBanUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "role": {
+          "$ref": "#/definitions/constROLE"
+        }
+      }
+    },
+    "authserviceChangeMailOTPResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "mail": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/constROLE"
+        }
+      }
+    },
+    "authserviceChangeMailResponse": {
+      "type": "object",
+      "properties": {
+        "otpId": {
+          "type": "string"
+        }
+      }
+    },
+    "authserviceChangePasswordResponse": {
+      "type": "object"
+    },
+    "authserviceCheckAuthResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/constROLE"
+        }
+      }
+    },
+    "authserviceCheckCredentialResponse": {
+      "type": "object",
+      "properties": {
+        "existed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authserviceCredential": {
+      "type": "object",
+      "properties": {
+        "publicKey": {
+          "type": "string"
+        },
+        "encryptedPrivateKey": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/constROLE"
+        }
+      },
+      "title": "-------------------------------------------------------------------------------------------------------------------------------------"
+    },
+    "authserviceDeleteUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/constROLE"
+        }
+      }
+    },
+    "authserviceForgotPasswordOTPResponse": {
+      "type": "object"
+    },
+    "authserviceForgotPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "otpId": {
+          "type": "string"
+        }
+      }
+    },
+    "authserviceGetCredentialResponse": {
+      "type": "object",
+      "properties": {
+        "credential": {
+          "$ref": "#/definitions/authserviceCredential"
+        }
+      }
+    },
+    "authserviceRegisterNoOTPResponse": {
+      "type": "object",
+      "properties": {
+        "publicKey": {
+          "type": "string"
+        },
+        "encryptedPrivateKey": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "authserviceRegisterOTPResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "mail": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/constROLE"
+        }
+      }
+    },
+    "authserviceRegisterResponse": {
+      "type": "object",
+      "properties": {
+        "publicKey": {
+          "type": "string"
+        },
+        "encryptedPrivateKey": {
+          "type": "string"
+        },
+        "otpId": {
+          "type": "string"
+        }
+      }
+    },
+    "authserviceResendOTPResponse": {
+      "type": "object"
+    },
+    "authserviceVerifyOTPResponse": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "type": {
+          "$ref": "#/definitions/constOTP_TYPE"
+        },
+        "otpId": {
+          "type": "string"
+        }
+      }
+    },
+    "constOTP_TYPE": {
+      "type": "string",
+      "enum": [
+        "REGISTER",
+        "FORGOT_PASSWORD",
+        "CHANGE_MAIL"
+      ],
+      "default": "REGISTER"
+    },
+    "constROLE": {
+      "type": "string",
+      "enum": [
+        "CUSTOMER",
+        "HANDYMAN",
+        "ADMIN"
+      ],
+      "default": "CUSTOMER"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

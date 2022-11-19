@@ -1,0 +1,17 @@
+POST http://handyman-2.uetbc.xyz/api/subscribe
+
+{
+    "data" : {
+        "deviceId" : "1232"
+    }
+}
+
+###
+
+POST http://handyman-2.uetbc.xyz/api/unsubscribe
+
+{
+    "data" : {
+        "deviceId" : "123"
+    }
+}

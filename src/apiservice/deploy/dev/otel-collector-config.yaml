@@ -1,0 +1,53 @@
+
+  
+receivers:
+  otlp:
+    protocols:
+      grpc:
+  prometheus/apiservice:
+    config:
+      scrape_configs:
+        - job_name: 'apiservice'
+          scrape_interval: 5s
+          static_configs:
+            - targets: ['apiservice:7070']
+  prometheus/authservice:
+    config:
+      scrape_configs:
+        - job_name: 'authservice'
+          scrape_interval: 5s
+          static_configs:
+            - targets: ['authservice:7070']
+processors:
+  batch:
+exporters:
+  jaeger:
+    endpoint: jaeger:14250
+    tls:
+      insecure: true
+  prometheus/apiservice:
+    endpoint: "0.0.0.0:7070"
+  prometheus/authservice:
+    endpoint: "0.0.0.0:7071"
+service:
+  # extensions:
+  #   - health_check
+  #   - zpages
+  pipelines:
+    traces:
+      receivers:
+        - otlp
+      processors: 
+        - batch
+      exporters:
+        - jaeger
+    metrics/apiservice:
+      receivers:
+        - prometheus/apiservice
+      exporters:
+        - prometheus/apiservice
+    metrics/authservice:
+      receivers:
+        - prometheus/authservice
+      exporters:
+        - prometheus/authservice
