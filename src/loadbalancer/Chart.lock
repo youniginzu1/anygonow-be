@@ -1,0 +1,6 @@
+dependencies:
+- name: sish-client
+  repository: https://aqaurius6666.github.io/helm-charts
+  version: 0.2.0
+digest: sha256:0c87964a2358f2d44192d9b8953dc652ef7e3a84645d132f6a9824fe603e6c0c
+generated: "2022-04-17T21:14:21.10049666Z"
