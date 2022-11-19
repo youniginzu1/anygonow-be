@@ -1,0 +1,42 @@
+version: "3.7"
+networks:
+  main:
+    name: go-go
+services:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "4000:3000"
+    networks:
+      - main
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes: 
+      - "./:/app/"
+    command:
+      - --config.file=/app/prometheus-config.yml
+    networks:
+      - main
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.29
+    ports:
+      - 16686:16686
+    networks:
+      - main
+  otel-collector:
+    # image: otel/opentelemetry-collector:latest
+    image: otel/opentelemetry-collector-contrib-dev:latest
+    # ports:
+    #   - "4317:4317"
+    #   - "55678:55678"
+    #   - "55679:55679"
+    #   - "8888:8888"
+    volumes: 
+      - "./:/app/"
+    command:
+      - --config=/app/otel-collector-config.yaml
+    networks:
+      - main

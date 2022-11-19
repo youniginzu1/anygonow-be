@@ -1,0 +1,37 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+- dev
+- releases/*
+
+pool:
+  name: Builder
+
+name: $(SourceBranchName)_$(Date:ddMMyyyy)$(Rev:.r)
+jobs:
+- job: BuildImage
+  displayName: Build Docker Image
+  pool:
+    name: Builder
+  steps:
+  - checkout: self
+  - task: CmdLine@2
+    displayName: Build
+    inputs:
+      script: |
+        docker build -t ${REPOSITORY}:${TAG} .
+        docker push ${REPOSITORY}:${TAG}
+        docker tag ${REPOSITORY}:${TAG} ${REPOSITORY}:latest
+        docker push ${REPOSITORY}:latest
+      workingDirectory: $(System.DefaultWorkingDirectory)
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Api service'
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)/deploy/production'
+      ArtifactName: 'server'
+      

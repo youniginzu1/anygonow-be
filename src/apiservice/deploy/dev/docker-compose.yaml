@@ -1,0 +1,49 @@
+version: "3.7"
+networks:
+  main:
+    name: go-go
+
+
+services:
+  apiserivce-db:
+    image: cockroachdb/cockroach:v21.1.6
+    ports:
+      - "50000:26257"
+    command: start-single-node --insecure
+    volumes:
+      - "apiserivce-db:/cockroach/cockroach-data"
+    networks:
+      - main
+  apiservice:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - "../../:/app"
+      - $HOME/go:/go
+    ports:
+      - "50001:8080"
+      - "2345:2345"
+    depends_on:
+      - apiserivce-db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        air
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - main
+  stripe: 
+    image: stripe/stripe-cli 
+    # restart: always 
+    env_file: .env
+    command: listen --forward-to ${SERVER_WEBHOOK_URL} 
+    networks: 
+      - main
+volumes:
+  unleashdb:
+  apiserivce-db:

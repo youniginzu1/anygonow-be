@@ -1,0 +1,10 @@
+insert into public.users (id, updated_at, created_at, deleted_at, mail, phone, contact_id, avatar_url, first_name, last_name, status)
+values  ('45f217cb-fb02-4b40-85d4-be6b6cfbb0ec', 1644306044013, 1644306044013, 0, 'tratran050101@gmail.com', '123456', '45f217cb-fb02-4b40-85d4-be6b6cfbb0ec', null, null, null, 0),
+        ('5c59f1d6-6ba3-46e5-99af-17c1f907590b', 1644307058299, 1644307058299, 0, 'lehoang26022000@gmail.com', '0123456789', '5c59f1d6-6ba3-46e5-99af-17c1f907590b', null, null, null, 0),
+        ('72f048be-f355-4521-b89f-958c997b4d48', 1644034535400, 1644034535400, 0, 'aqaurius1910@gmail.com', '012343617111', '72f048be-f355-4521-b89f-958c997b4d48', 'https://anygonow.s3.us-east-1.amazonaws.com/image.svg', null, null, 0),
+        ('79949a04-fa97-4b8d-93e2-bf26be9a4a06', 1644330286181, 1644330286181, 0, 'ducanhfo3888@gmail.com', '00000000000', '79949a04-fa97-4b8d-93e2-bf26be9a4a06', null, null, null, 0),
+        ('a06b58e9-9f90-4885-8243-f0c772144116', 1644416051857, 1644249732020, 0, 'aqaurius1910+11@gmail.com', '0100101011', 'a06b58e9-9f90-4885-8243-f0c772144116', null, null, null, 0),
+        ('b793e212-1e52-454f-a4c2-075c045f441f', 1644411234748, 1644411234748, 0, 'thuan2172001@gmail.com', '0337336033', 'b793e212-1e52-454f-a4c2-075c045f441f', null, null, null, 0),
+        ('bd2bae2f-a2bf-4b99-9175-1fa665e80fb7', 1644067727715, 1644067727715, 0, 'trungtp1202@gmail.com', '0986312202', 'bd2bae2f-a2bf-4b99-9175-1fa665e80fb7', null, null, null, 0),
+        ('d1503c4c-5fe0-44dd-a5de-d64a3df8b140', 1644246076338, 1644246076338, 0, 'aqaurius1910+3@gmail.com', '11231313123', 'd1503c4c-5fe0-44dd-a5de-d64a3df8b140', null, null, null, 0),
+        ('f482e7a9-90cf-404e-8eed-02e0f6855d86', 1644249973421, 1644249973421, 0, 'aqaurius1910+12@gmail.com', '0101112117', 'f482e7a9-90cf-404e-8eed-02e0f6855d86', null, null, null, 0);
