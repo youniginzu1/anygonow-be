@@ -1,0 +1,9 @@
+dependencies:
+- name: cockroachdb
+  repository: https://charts.cockroachdb.com/
+  version: 8.1.6
+- name: redis
+  repository: https://charts.bitnami.com/bitnami/
+  version: 17.1.8
+digest: sha256:9bfe718f22723fad0ccfbd820897afae8490e9666a665cd780a7ac27a8ddcedc
+generated: "2022-09-23T08:24:53.351574603+07:00"
