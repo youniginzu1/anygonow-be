@@ -1,0 +1,9 @@
+dependencies:
+- name: sish-client
+  repository: https://aqaurius6666.github.io/helm-charts
+  version: 0.2.0
+- name: unleash
+  repository: https://docs.getunleash.io/helm-charts
+  version: 2.6.0
+digest: sha256:6d0aabeadacdda2a07afe6fca61bb80d7a54392b633cd52756689931a50a8f6a
+generated: "2022-04-17T21:13:48.492726117Z"
